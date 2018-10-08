@@ -98,7 +98,7 @@ Class User extends DatabaseConnection{
 
 	public function getData(){
 
-		$sql="SELECT organization_name,street,zone,district,contact_number,item_description,website from organization where status=1";
+		$sql="SELECT organization_id,organization_name,street,zone,district,contact_number,item_description,website from organization where status=1";
 
 		$data=$this->db->queryFunction($sql);
 		return $data;

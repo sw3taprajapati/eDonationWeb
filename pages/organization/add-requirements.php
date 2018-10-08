@@ -79,6 +79,7 @@ $description;
 							<td><a href="index.php?filename=pages/organization/add-requirements.php&id=<?php echo $value['categories_id'] ?>" onclick="return confirmationBox('remove?');"><i class="fa fa-trash"></i></a></td>
 						</tr>
 						<?php
+						unset($_SESSION['status']);
 					}
 					?>
 				</tbody>

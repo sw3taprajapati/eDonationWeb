@@ -17,7 +17,6 @@ if(!isset($_SESSION['username'])){
 					<div class="<?php echo $_SESSION['class'] ?>" id="<?php echo $_SESSION['class'] ?>"><i class="<?php echo $icon ?>"></i><?php echo $_SESSION['status']; ?></div>
 					<?php
 					unset($_SESSION['status']);
-					unset($_SESSION['class']);
 				}
 				?>
 				<h2>Register Organization</h2>

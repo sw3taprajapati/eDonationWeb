@@ -19,7 +19,7 @@ crossorigin="anonymous"></script>
 		?>
 		setTimeout(function(){
 			document.getElementById('<?php echo $_SESSION['class'] ?>').remove();
-		}, 3000);
+		}, 2000);
 		<?php
 
 	} ?>
@@ -69,19 +69,16 @@ crossorigin="anonymous"></script>
 			$('.change-password-field').hide();
 		});
 
-		$('#old-password').focusout(function(){
+		$('#old-password').blur(function(){
 
-			var oldPassword=$("#old-password");
+			var oldPassword=$("#old-password").val();
 			$.ajax({  
 				type: 'POST',
 				url: 'changePassword.php', 
 				data: { password: this.oldPassword },
 				success: function(result) {
-					if(result==true){
-						$('#password-old').text("password doesnt match true");
-						$('#password-old').addClass('fail');
-					}else{
-						$('#password-old').text("password doesnt match true");
+					if(result==false){
+						$('#password-old').text("password doesnt match");
 						$('#password-old').addClass('fail');
 					}
 				}
@@ -119,10 +116,5 @@ crossorigin="anonymous"></script>
 	});
 </script>
 </div>
-<?php
-if(isset($_SESSION['status'])){
-	unset($_SESSION['status']);
-	unset($_SESSION['class']);
-}?>
 </body>
 </html>

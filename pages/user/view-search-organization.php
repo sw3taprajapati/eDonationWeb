@@ -1,6 +1,4 @@
-<?php 
-include('classes/OrganizationViewSearch.php');
-?>
+
 <section class="search-view-organization">
 	<div class="container">
 		<div class="search-div">
@@ -15,7 +13,7 @@ include('classes/OrganizationViewSearch.php');
 		<div class="three-column">
 			<?php 
 
-			$obj=new OrganizationViewSearch();
+			$obj=new User();
 
 			if(isset($_POST['submit'])){
 				$searchText=$_POST['search-text'];
@@ -33,7 +31,7 @@ include('classes/OrganizationViewSearch.php');
 						<?php 
 						if($value['item_description']!='Not Set'){
 							?>
-							<a href="#" class="button btn-green">Intrested</a></p>
+							<a href="index.php?filename=pages/donor/intrestedForm.php&id=<?php echo $value['organization_id'] ?>" class="button btn-green">Intrested</a></p>
 							<?php
 						} ?>
 				</div>
