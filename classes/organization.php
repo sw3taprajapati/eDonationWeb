@@ -12,17 +12,19 @@ class Organization extends DatabaseConnection{
 
 	public function insertToOrganization($organizationName,$email,$username,$password,$street,$district,$zone,$contactNumber,$website,$panNumber){
 
+		$hashPassword=md5($password);
 		$description="Not Set";
 		$status=0;
 		$verify="Not Set";
 		$role_name="Receiver";
 		$id;
-		$sql="Insert into user (username,password,role_id) VALUES ('".$username."', '".$password."',(SELECT role_id from Role where role_name LIKE '".$role_name."'));";
+		$sql="Insert into user (username,password,role_id) VALUES ('".$username."', '".$hashPassword."',(SELECT role_id from Role where role_name LIKE '".$role_name."'));";
+
 
 		$query=$this->db->queryFunction($sql);
 
 		if($query>0){
-			$sql="SELECT user_id FROM user where username='".$username."' and password='".$password."';";
+			$sql="SELECT user_id FROM user where username='".$username."' and password='".$hashPassword."';";
 			$result=$this->db->queryFunction($sql);
 
 			foreach ($result as $value) {
@@ -34,16 +36,28 @@ class Organization extends DatabaseConnection{
 			$query=$this->db->queryFunction($sql);
 
 			if($query>0){
-				$_SESSION['status']="Registered successfully";
+				$_SESSION['status']="Registered successfully!!! You'll be notified when admin approves";
 				$_SESSION['class']="success";
 				header('Location:index.php?filename=pages/organization/register-organization.php');
 			}else{
-				$_SESSION['status']="Something went wrong!!Can't insert";
-				$_SESSION['class']="fail";
-				header('Location:index.php?filename=pages/organization/register-organization.php');
+
+				$sql = "DELETE FROM user WHERE user_id = ".$id;
+
+				$query = $this->db->queryFunction($sql);
+
+				if($query>0){
+					$_SESSION['status']="Something went wrong!!Try again later!!!";
+					$_SESSION['class']="fail";
+					header('Location:index.php?filename=pages/organization/register-organization.php');
+				}else{
+					$_SESSION['status']="Something went wrong!!Try again later";
+					$_SESSION['class']="fail";
+					header('Location:index.php?filename=pages/organization/register-organization.php');
+				}
+				
 			}
 		}else{
-			$_SESSION['status']="Something went wrong!!Can't insert";
+			$_SESSION['status']="Something went wrong!!Try again later";
 			$_SESSION['class']="fail";
 			header('Location:index.php?filename=pages/organization/register-organization.php');
 		}
@@ -93,12 +107,10 @@ class Organization extends DatabaseConnection{
 		if($query>0){
 			$_SESSION['status']="Update successfully";
 			$_SESSION['class']="success";
-			header('location:index.php?filename=pages/organization/edit-detail.php');
 			
 		}else{
 			$_SESSION['status']="Something went wrong!!Try again later";
 			$_SESSION['class']="fail";
-			header('location:index.php?filename=pages/organization/edit-detail.php');
 			
 		}
 	}
@@ -150,22 +162,18 @@ class Organization extends DatabaseConnection{
 				if($result>0){
 					$_SESSION['status']="Categories added";
 					$_SESSION['class']="success";
-					header('location:index.php?filename=pages/organization/add-requirements.php');
 				}else{
 					$_SESSION['status']="Something went wrong!!! Try again later.";
 					$_SESSION['class']="fail";
-					header('location:index.php?filename=pages/organization/add-requirements.php');
 				}
 			}else{
 				$_SESSION['status']="Something went wrong try again later";
 				$_SESSION['class']="fail";
-				header('location:index.php?filename=pages/organization/add-requirements.php');
 			}
 
 		} else{
 			$_SESSION['status']="Please only choose those categories that are not added Earlier";
 			$_SESSION['class']="fail";
-			header('location:index.php?filename=pages/organization/add-requirements.php');
 
 		}
 	}
@@ -179,11 +187,9 @@ class Organization extends DatabaseConnection{
 		if($result==true){
 			$_SESSION['status']="description updated";
 			$_SESSION['class']="success";
-			header('location:index.php?filename=pages/organization/add-requirements.php');
 		}else{
 			$_SESSION['status']="Something went wrong. Try again later!!";
 			$_SESSION['class']="fail";
-			header('location:index.php?filename=pages/organization/add-requirements.php');
 		}
 	}
 }

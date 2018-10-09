@@ -9,7 +9,8 @@ Class User extends DatabaseConnection{
 
 	public function login($username,$password){
 
-		$sql ="SELECT * FROM user where username LIKE '".$username."' and  password LIKE '".$password."' LIMIT 1;";
+		$hashPassword=md5($password);
+		$sql ="SELECT * FROM user where username LIKE '".$username."' and  password LIKE '".$hashPassword."' LIMIT 1;";
 
 		$result=$this->db->queryFunction($sql);
 		$count=0;
@@ -45,7 +46,7 @@ Class User extends DatabaseConnection{
 				}else if($roleName=="Receiver"){
 
 
-					$sql="SELECT organization.status from Organization inner join user on organization.user_id=user.user_id where user.username LIKE '".$username."' AND user.password LIKE '".$password."'";
+					$sql="SELECT organization.status from Organization inner join user on organization.user_id=user.user_id where user.username LIKE '".$username."' AND user.password LIKE '".$hashPassword."'";
 
 					$result=$this->db->queryFunction($sql);
 					$status;
@@ -80,12 +81,12 @@ Class User extends DatabaseConnection{
 
 				}else if($roleName=="Donor"){
 
-					header('Location:../../index.php?filename=pages/donor/donor-dashboard.php');
+					header('Location:index.php?filename=pages/donor/donor-dashboard.php');
 
 				}else{
 					$_SESSION['status']="Username or Password Incorrect";
 					$_SESSION['class']="fail";
-					header('Location:../../index.php?filename=pages/login-logout/login.php');
+					header('Location:index.php?filename=pages/user/login.php');
 				}
 			}
 		}else{
@@ -114,6 +115,30 @@ Class User extends DatabaseConnection{
 
 	public function viewDonors(){
 		$query="Select * from Donor where status=1";
+
+		$result=$this->db->queryFunction($query);
+
+		return $result;
+	}
+
+	public function countTotal($name,$table,$status=2){
+		if($status==2){
+			$query = "SELECT count(".$name.") as total_number from ".$table;
+		}else{
+			$query = "SELECT count(".$name.") as total_number from ".$table." where status = ".$status;
+		}
+		
+		$result=$this->db->queryFunction($query);
+		$count;
+
+		foreach ($result as $value) {
+			$count = $value['total_number'];
+		}
+		return $count;
+	}
+
+	public function getName($name,$table){
+		$query= "SELECT ".$name.",status from ".$table;
 
 		$result=$this->db->queryFunction($query);
 

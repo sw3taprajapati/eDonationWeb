@@ -1,4 +1,4 @@
-<?php include ('classes/admin/ApproveDeclineOrganization.php');
+<?php
 if(isset($_SESSION['username'])){
 	?>
 	<section class="display-org-list">

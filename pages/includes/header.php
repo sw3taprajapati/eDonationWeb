@@ -23,9 +23,8 @@
 							<ul>
 								<li><a href="index.php">Home</a></li>
 								<li><a href="index.php?filename=pages/organization/register-organization.php">Register Organization</a></li>
+								<li><a href="index.php?filename=pages/donor/register-donor.php">Become a Donor</a></li>
 								<li><a href="index.php?filename=pages/user/view-donors.php">Our Donors</a></li>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact us</a></li>
 								<li><a href="index.php?filename=pages/user/login.php" class="button btn-blue"><i class="fa fa-user icon"></i> Log in</a></li>
 							</ul>
 						<?php } ?>

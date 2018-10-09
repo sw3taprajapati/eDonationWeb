@@ -88,10 +88,10 @@ Class Admin extends DatabaseConnection{
 
 			$result=$this->db->queryFunction($sql);
 
-			if($result>0){
+			if($result==true){
 				$_SESSION['status']="Category added";
 				$_SESSION['class']="success";
-				header('Location:/index.php?filename=pages/admin/add-delete-categories.php');
+				header('Location:index.php?filename=pages/admin/add-delete-categories.php');
 			}else{
 				$_SESSION['status']="Something went wrong!! try again later";
 				$_SESSION['class']="fail";

@@ -16,10 +16,10 @@ if (isset($_SESSION['username'])) {
 
 			<div class="menu-div">
 				<div class="section-image">
-					<a href=""><img src="assets/images/info.png" alt=""><a href=""></a></a>
+					<a href="index.php?filename=pages/admin/view-information.php"><img src="assets/images/info.png" alt=""><a href=""></a></a>
 				</div>
 				<div class="section-categories">
-					<a href=""><p>View Information</p></a>
+					<a href="index.php?filename=pages/admin/view-information.php"><p>View Information</p></a>
 				</div>
 			</div>
 

@@ -5,11 +5,15 @@
 		<span><i class="fa fa-copyright"></i> Copyright 2018 | All rights reserved</span>
 	</div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 
 <script type="text/javascript">
+
 	function confirmationBox($operation){
 		return confirm("'Are you sure you want to "+$operation+"'");
 	}
@@ -19,7 +23,7 @@ crossorigin="anonymous"></script>
 		?>
 		setTimeout(function(){
 			document.getElementById('<?php echo $_SESSION['class'] ?>').remove();
-		}, 2000);
+		}, 3000);
 		<?php
 
 	} ?>
@@ -33,24 +37,37 @@ crossorigin="anonymous"></script>
 			var newPassword=$("#new-password").val();
 			var confirmPassword=$("#confirm-password").val();
 
-			if(newPassword==confirmPassword){
-
-				$('#password-new').removeClass('fail');
-				$('#password-new').text("password matched");
-				$('#password-new').addClass('success');
-
-				$('#password-confirm').removeClass('fail');
-				$('#password-confirm').text("password matched");
-				$('#password-confirm').addClass('success');
-
-			}else{
-
+			if(newPassword!=confirmPassword){
 				$('#password-new').removeClass('success');
-				$('#password-new').text("password doesnot matches");
+				$('#password-new').text("Password doesnot matches");
 				$('#password-new').addClass('fail');
+				$('#password-new').focus();
 
 				$('#password-confirm').removeClass('success');
-				$('#password-confirm').text("password doesnot matches");
+				$('#password-confirm').text("Password doesnot matches");
+				$('#password-confirm').addClass('fail');
+
+			}else{
+				$('#password-confirm').removeClass('fail');
+				$('#password-new').text("");
+				$('#password-confirm').text("");
+				$('#password-new').removeClass('fail');
+			}
+
+		});
+
+		$('#submit').on("click",function(){
+			var newPassword=$("#new-password").val();
+			var confirmPassword=$("#confirm-password").val();
+
+			if(newPassword!=confirmPassword){
+				$('#password-new').removeClass('success');
+				$('#password-new').text("Password doesnot matches");
+				$('#password-new').addClass('fail');
+				$('#password-new').focus();
+
+				$('#password-confirm').removeClass('success');
+				$('#password-confirm').text("Password doesnot matches");
 				$('#password-confirm').addClass('fail');
 
 			}
