@@ -38,7 +38,7 @@ class Organization extends DatabaseConnection{
 			if($query>0){
 				$_SESSION['status']="Registered successfully!!! You'll be notified when admin approves";
 				$_SESSION['class']="success";
-				header('Location:index.php?filename=pages/organization/register-organization.php');
+				header('Location:index.php?filename=organization/register-organization');
 			}else{
 
 				$sql = "DELETE FROM user WHERE user_id = ".$id;
@@ -48,18 +48,18 @@ class Organization extends DatabaseConnection{
 				if($query>0){
 					$_SESSION['status']="Something went wrong!!Try again later!!!";
 					$_SESSION['class']="fail";
-					header('Location:index.php?filename=pages/organization/register-organization.php');
+					header('Location:index.php?filename=organization/register-organization');
 				}else{
 					$_SESSION['status']="Something went wrong!!Try again later";
 					$_SESSION['class']="fail";
-					header('Location:index.php?filename=pages/organization/register-organization.php');
+					header('Location:index.php?filename=organization/register-organization');
 				}
 				
 			}
 		}else{
 			$_SESSION['status']="Something went wrong!!Try again later";
 			$_SESSION['class']="fail";
-			header('Location:index.php?filename=pages/organization/register-organization.php');
+			header('Location:index.php?filename=organization/register-organization');
 		}
 	}
 
@@ -125,7 +125,7 @@ class Organization extends DatabaseConnection{
 	}
 
 	public function getRequirementDetails(){
-		$this->sql="Select categories.categories_id,categories.categories_list,organization.item_description from categories inner join organizationcategories on categories.categories_id= organizationcategories.categories_id inner join organization on Organization.organization_id=organizationcategories.organization_id where organization.user_id = (SELECT user_id from user where username LIKE '".$_SESSION['username']."')";
+		$this->sql="SELECT categories.categories_id,categories.categories_list,organization.item_description from categories inner join organizationcategories on categories.categories_id= organizationcategories.categories_id inner join organization on Organization.organization_id=organizationcategories.organization_id where organization.user_id = (SELECT user_id from user where username LIKE '".$_SESSION['username']."')";
 
 		$result=$this->db->queryFunction($this->sql);
 		return $result;
@@ -137,7 +137,7 @@ class Organization extends DatabaseConnection{
 		$result;
 
 		foreach ($categories as $value) {
-			$this->sql="select organizationcategories.categories_id from organizationcategories inner join categories on organizationcategories.categories_id=categories.categories_id where categories.categories_id =".$value;
+			$this->sql="SELECT organizationcategories.categories_id from organizationcategories inner join categories on organizationcategories.categories_id=categories.categories_id WHERE categories.categories_id =".$value. " AND organization_id = (SELECT organization_id from organization where user_id = (SELECT user_id from user where user username LIKE '".$_SESSION['username']."'";
 
 			$result=$this->db->queryFunction($this->sql);
 

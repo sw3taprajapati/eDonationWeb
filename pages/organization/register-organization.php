@@ -20,7 +20,7 @@ if(!isset($_SESSION['username'])){
 				}
 				?>
 				<h2>Register Organization</h2>
-				<form action="index.php?filename=pages/organization/insert-organization.php" method="POST">
+				<form action="index.php?filename=organization/insert-organization" method="POST">
 					<h3>(Note: * denotes required field)</h3>
 					<div class="form-group">
 						<!-- <label for="organization-name">Organization Name</label> -->

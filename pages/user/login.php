@@ -4,9 +4,9 @@ if(isset($_POST['register-link'])){
 	$name=$_POST['register'];
 
 	if($name=='organization'){
-		header('location:index.php?filename=pages/organization/register-organization.php');
+		header('location:index.php?filename=organization/register-organization');
 	}else if($name=='donor'){
-		header('location:index.php?filename=pages/donor/register-donor.php');
+		header('location:index.php?filename=donor/register-donor');
 	}else{
 		header('location:index.php');
 	}
@@ -30,7 +30,7 @@ if(!isset($_SESSION['username'])){
 					unset($_SESSION['status']);
 				}
 				?>
-				<form action="index.php?filename=pages/user/login-check.php" method="POST">
+				<form action="index.php?filename=user/login-check" method="POST">
 					<div class="form-group">
 						<input type="username" placeholder="Username" id="username" name="username" class="input-field" required="required">
 					</div>
@@ -82,6 +82,6 @@ if(!isset($_SESSION['username'])){
 	</div>
 	<?php
 }else{
-	header('Location:index.php');
+	header('Location:index');
 }
 ?>

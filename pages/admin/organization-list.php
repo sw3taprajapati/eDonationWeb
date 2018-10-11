@@ -45,7 +45,7 @@ if(isset($_SESSION['username'])){
 			<td><?php echo $value['organization_name'] ?></td>
 			<td><?php echo $value['street'].", ".$value['district'].", ".$value['zone'] ?></td>
 			<td><?php echo $value['pan_number'] ?></td>
-			<td><a href="index.php?filename=pages/admin/edit.php&id=<?php echo $value['organization_id'];?>" onclick="return confirmationBox('approve?');" title='Approve Organization'><i class="fa fa-check"></i></a> | <a href="index.php?filename=pages/admin/delete.php&id=<?php echo $value['organization_id']; ?>" onclick="return confirmationBox('decline?');" title='Decline Organization'><i class="fa fa-times"></i></a></td>
+			<td><a href="index.php?filename=admin/edit&id=<?php echo $value['organization_id'];?>" onclick="return confirmationBox('approve?');" title='Approve Organization'><i class="fa fa-check"></i></a> | <a href="index.php?filename=admin/delete&id=<?php echo $value['organization_id']; ?>" onclick="return confirmationBox('decline?');" title='Decline Organization'><i class="fa fa-times"></i></a></td>
 			</tr>
 			<?php
 			/*$i++;*/

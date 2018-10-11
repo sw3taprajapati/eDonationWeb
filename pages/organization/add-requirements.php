@@ -8,8 +8,6 @@ if(isset($_POST['submitedit'])){
 }
 
 $data=$obj->getCategoriesList(); 
-
-$description;
 ?>
 <section class="add-requirements">
 	<div class="container">
@@ -54,7 +52,7 @@ $description;
 			
 			<?php
 			$i=1; 
-			$description;
+			
 			$data=$obj->getRequirementDetails(); 
 			?>
 			
@@ -69,39 +67,43 @@ $description;
 				</thead>
 				<tbody>
 					<?php
-					foreach ($data as $value) {
-						$description=$value['item_description'];
-
+					$description='No Description';
+						foreach ($data as $value) {
+							?>
+							<tr>
+								<td><?php echo $i; ?></td>
+								<td><?php echo $value['categories_list']; ?></td>
+								<td><a href="index.php?filename=organization/add-requirements&id=<?php echo $value['categories_id'] ?>" onclick="return confirmationBox('remove?');"><i class="fa fa-trash"></i></a></td>
+							</tr>
+							<?php
+							$description=$value['item_description'];
+						}
 						?>
+					</tbody>
+					<tfoot>
 						<tr>
-							<td><?php echo $i; ?></td>
-							<td><?php echo $value['categories_list']; ?></td>
-							<td><a href="index.php?filename=pages/organization/add-requirements.php&id=<?php echo $value['categories_id'] ?>" onclick="return confirmationBox('remove?');"><i class="fa fa-trash"></i></a></td>
+							<td>Description of items : </td>
+							<td><?php echo $description; ?></td>
+							<td><?php if($description!='No Description'){
+								?>
+								<i class="fa fa-edit" id="edit-requirements"></i>
+								<?php
+							} ?></td>
+							
 						</tr>
-						<?php
-						unset($_SESSION['status']);
-					}
-					?>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td>Description of items : </td>
-						<td><?php echo $value['item_description']; ?></td>
-						<td><i class="fa fa-edit" id="edit-requirements"></i></td>
-					</tr>
-				</tfoot>
-			</table>
-			<div class="edit-description">
-				<form action="" method="POST">
-					<div class="form-group">
-						<textarea name="description" id="description" name="description" cols="30" rows="5" placeholder="Edit your description here" required="required"><?php echo $value['item_description'] ?></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Edit Requirement" class="button btn-blue" name="submitedit">
-						<input type="button" value="cancel" name="cancel" id="cancel" class="button btn-blue">
-					</div>
-				</form>
+					</tfoot>
+				</table>
+				<div class="edit-description">
+					<form action="" method="POST">
+						<div class="form-group">
+							<textarea name="description" id="description" name="description" cols="30" rows="5" placeholder="Edit your description here" required="required"><?php echo $value['item_description'] ?></textarea>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Edit Requirement" class="button btn-blue" name="submitedit">
+							<input type="button" value="cancel" name="cancel" id="cancel" class="button btn-blue">
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>

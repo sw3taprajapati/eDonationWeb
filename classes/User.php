@@ -41,7 +41,7 @@ Class User extends DatabaseConnection{
 
 				if($roleName=="Admin"){
 					
-					header('Location:index.php?filename=pages/admin/admin.php');
+					header('Location:index.php?filename=admin/admin');
 
 				}else if($roleName=="Receiver"){
 
@@ -56,13 +56,13 @@ Class User extends DatabaseConnection{
 					
 					if($status==1){
 
-						header('Location:index.php?filename=pages/organization/organization-dashboard.php');
+						header('Location:index.php?filename=organization/organization-dashboard');
 
 					}else if($status==0){
 
 						$_SESSION['status']="Cant login!!! Not Approved yet";
 						$_SESSION['class']="fail";
-						header('Location:index.php?filename=pages/user/login.php');
+						header('Location:index.php?filename=user/login');
 
 						unset($_SESSION['username']);
 						unset($_SESSION['role-id']);
@@ -71,7 +71,7 @@ Class User extends DatabaseConnection{
 
 						$_SESSION['status']="username or password incorrect";
 						$_SESSION['class']="fail";
-						header('Location:index.php?filename=pages/user/login.php');
+						header('Location:index.php?filename=user/login');
 
 						unset($_SESSION['username']);
 						unset($_SESSION['role-id']);
@@ -81,18 +81,18 @@ Class User extends DatabaseConnection{
 
 				}else if($roleName=="Donor"){
 
-					header('Location:index.php?filename=pages/donor/donor-dashboard.php');
+					header('Location:index.php?filename=donor/donor-dashboard');
 
 				}else{
 					$_SESSION['status']="Username or Password Incorrect";
 					$_SESSION['class']="fail";
-					header('Location:index.php?filename=pages/user/login.php');
+					header('Location:index.php?filename=user/login');
 				}
 			}
 		}else{
 			$_SESSION['status']="Username or Password Incorrect";
 			$_SESSION['class']="fail";
-			header('Location:index.php?filename=pages/user/login.php');
+			header('Location:index.php?filename=user/login');
 		}
 
 	}
@@ -107,7 +107,7 @@ Class User extends DatabaseConnection{
 
 	public function searchOrg($searchText){
 
-		$sql="SELECT organization_name,street,zone,district,contact_number,item_description,website from organization where (organization_name like '%".$searchText."%' or street like '%".$searchText."%' or district like '%".$searchText."%' or zone like '%".$searchText."%' or website like '%".$searchText."%') and status=1";
+		$sql="SELECT organization_id,organization_name,street,zone,district,contact_number,item_description,website from organization where (organization_name like '%".$searchText."%' or street like '%".$searchText."%' or district like '%".$searchText."%' or zone like '%".$searchText."%' or website like '%".$searchText."%') and status=1";
 
 		$data=$this->db->queryFunction($sql);
 		return $data;

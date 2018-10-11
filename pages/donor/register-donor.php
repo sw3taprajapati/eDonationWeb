@@ -91,7 +91,7 @@ if(isset($_SESSION['username'])){
 						<input type="text" name="contact-number" id="contact-number" placeholder="Contact Number*" class="input-field" required="required">
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Apply" id="submit" name="submit" class="button btn-blue">
+						<input type="submit" value="Register" id="submit" name="submit" class="button btn-blue">
 					</div>
 				</form>
 			</div>

@@ -14,21 +14,21 @@
 							?>
 							<ul>
 								<li><span class="heading">Welcome <?php echo $_SESSION['username'] ?></span></li>
-								<li><a href="index.php?filename=pages/user/logout.php" onclick="return logout();" class="button btn-blue" ><i class="fa fa-sign-out icon" ></i> Logout</a></li>
+								<li><a href="index.php?filename=user/logout" onclick="return logout();" class="button btn-blue" ><i class="fa fa-sign-out icon" ></i> Logout</a></li>
 							</ul>
-
 							<?php
+
 						}else{
 							?>
 							<ul>
-								<li><a href="index.php">Home</a></li>
-								<li><a href="index.php?filename=pages/organization/register-organization.php">Register Organization</a></li>
-								<li><a href="index.php?filename=pages/donor/register-donor.php">Become a Donor</a></li>
-								<li><a href="index.php?filename=pages/user/view-donors.php">Our Donors</a></li>
-								<li><a href="index.php?filename=pages/user/login.php" class="button btn-blue"><i class="fa fa-user icon"></i> Log in</a></li>
+								<li <?php echo (isset($_GET['filename']))=='organization/register-organization'?'class="active"':'ddd'?>>
+									<a href="index.php?filename=organization/register-organization" id="register-menu">Register Organization</a>
+								</li>
+								<li <?php echo (isset($_GET['filename']))=='donor/register-donor'?'class="active"':'ddd'?>><a href="index.php?filename=donor/register-donor" id="donor-register-menu">Become a Donor</a></li>
+								<li <?php echo (isset($_GET['filename']))=='user/view-donors'?'class="active"':'ddd'?>><a href="index.php?filename=user/view-donors" id="view-donors-menu">Our Donors</a></li>
+								<li><a href="index.php?filename=user/login" class="button btn-blue"><i class="fa fa-user icon"></i> Log in</a></li>
 							</ul>
 						<?php } ?>
 					</nav>
 				</div>
-			</div>
-		</header>
+			</header>

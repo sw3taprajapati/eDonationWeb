@@ -156,7 +156,7 @@ h2{
 .header{
 	position: fixed;
 	width: 100%;
-	padding:20px;
+	padding:20px 20px 10px;
 	background: white;
 	border-bottom: 1px solid #f4f4f4;
 }
@@ -373,7 +373,8 @@ input[readonly="readonly"]{
 	padding:150px 0 50px;
 }
 .admin-menu h2,.display-org-list h2,.delete-view-categories h2,
-.search-view-organization h2, .organization-menu h2, .add-requirements h2, .view-information h2,.donor h2{
+.search-view-organization h2, .organization-menu h2, .add-requirements h2, .view-information h2,.donor h2,
+.interested-donor h2{
 	font-size:20px;
 	font-weight: 700;
 	text-align: center;
@@ -438,27 +439,59 @@ input[readonly="readonly"]{
 }
 
 .login-div .div-register{
-	padding:0;
+	padding : 0;
 }
 .donor .navigation-bar{
 	font-weight: 700;
 	text-align: right;
 	margin:0;
-	padding: 0;
-	border-bottom: 1px solid #f4f4f4;
+	padding-top: 75px;
 	width: 100%;
+	border-bottom: 1px solid #f4f4f4;
 }
 
+.active{
+	background-color: #f4f4f4;
+	color:#fff;
+}
+.donor nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
 .searchbox{
 	border:1px solid #f4f4f4;
 	padding:10px;
 	border-radius: 20px;
 	text-align: left;
+	float: left;
 }
 .searchbox .input-field{
-
 	padding: 0;
 	margin:0;
 	border:none;
 	background:none;
+}
+.list{
+	padding:75px 0 0 0;
+}
+.list .view-organization p{
+	margin:15px;
+}
+.list .button {
+    padding: 10px 12px;
+}
+.interested-donor{
+	padding-top: 150px;
+}
+.interested-donor .div-form{
+	margin-top:25px;
+}
+.interested-donor form{
+	text-align: center;
+}
+.div-table{
+	margin-top:20px;
 }

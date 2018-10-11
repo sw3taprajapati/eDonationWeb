@@ -15,32 +15,23 @@ if(isset($_GET['filename']) || isset($_SESSION['username'])){
 		if($_SESSION['role-id']==1){
 
 			if(!isset($_GET['filename'])){
-				$filename='pages/admin/admin.php';
+				$filename='admin/admin';
 			}
-
-			include($filename);
 
 		}else if($_SESSION['role-id']==3){
 			
 			if(!isset($_GET['filename'])){
-				$filename='pages/organization/organization-dashboard.php';
+				$filename='organization/organization-dashboard';
 			}
-
-			include($filename);
 
 		}else if($_SESSION['role-id']==2){
-			
+			include_once('pages/donor/donor-menu.php');
 			if(!isset($_GET['filename'])){
-				$filename='pages/donor/donor-dashboard.php';
+				$filename='donor/donor-dashboard';
 			}
-
-			include($filename);
-			
 		}
-	}else{
-		include($filename);
-
 	}
+	include('pages/'.$filename.'.php');
 }else{
 	include('pages/includes/banner.php');
 	include ('pages/user/section-categories.php');
